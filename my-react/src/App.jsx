@@ -13,8 +13,9 @@ export default function App() {
   const [draft, setDraft] = useState("");
   const [selectedId, setSelectedId] = useState(0);
   const [status, setStatus] = useState("list");
-
   const [notes, setNotes] = useLocalStorage(initial_data);
+  const inputRef = useRef(null);
+
 
   useEffect(() => {
     setDraft(notes.find((note) => note.id === selectedId).content);
@@ -37,9 +38,13 @@ export default function App() {
     setNotes(nextUpdate);
   }
 
+  useEffect(() => {
+    if (status === "add" || status === "edit")
+    { inputRef.current.focus();}
+  }, [selectedId, status]);
+
   return (
     <>
-      <h1>{draft}</h1>
       <ul>
         {titles.map((title) => (
           <li
@@ -52,7 +57,9 @@ export default function App() {
             {title.title}
           </li>
         ))}
-        <li onClick={() => setStatus("add")}>+</li>
+        <li onClick={() => {
+          setStatus("add")
+        }}>+</li>
       </ul>
 
       {status === "edit" && (
@@ -63,6 +70,7 @@ export default function App() {
             onChange={(e) => {
               setDraft(e.target.value);
             }}
+            ref={inputRef}
           />
           <button
             onClick={() => {
@@ -90,6 +98,7 @@ export default function App() {
             onChange={(e) => {
               setDraft(e.target.value);
             }}
+            ref={inputRef}
           />
           <button
             onClick={() => {
