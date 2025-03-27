@@ -44,7 +44,8 @@ export default function App() {
   }, [selectedId, status]);
 
   return (
-    <>
+    <div class="container">
+     <div class="list">
       <ul>
         {titles.map((title) => (
           <li
@@ -61,9 +62,9 @@ export default function App() {
           setStatus("add")
         }}>+</li>
       </ul>
-
+     </div>
       {status === "edit" && (
-        <>
+        <div class="edit">
           <textarea
             key={selectedId}
             value={draft}
@@ -72,6 +73,7 @@ export default function App() {
             }}
             ref={inputRef}
           />
+          <div class="buttons">
           <button
             onClick={() => {
               setStatus("list");
@@ -88,11 +90,12 @@ export default function App() {
           >
             削除
           </button>
-        </>
+          </div>
+        </div>
       )}
 
       {status === "add" && (
-        <>
+        <div class="add">
           <textarea
             placeholder={"enter"}
             onChange={(e) => {
@@ -109,8 +112,8 @@ export default function App() {
           >
             新規登録
           </button>
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 }
