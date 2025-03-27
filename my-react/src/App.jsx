@@ -1,97 +1,105 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 let nextId = 3;
 const initial_data = [
-  { id: 0, title: "松尾芭蕉", body: "古池や蛙飛び込む水の音" },
-  { id: 1, title: "小林一茶", body: "痩せガエル負けるな一茶ここにあり" },
-  { id: 2, title: "作者不詳", body: "富士山麓に鸚鵡鳴く" },
+  { id: 0, content: "松尾芭蕉\n古池や蛙飛び込む水の音" },
+  { id: 1, content: "小林一茶\n痩せガエル負けるな一茶ここにあり" },
+  { id: 2, content: "作者不詳\n富士山麓に鸚鵡鳴く" },
 ];
 
-function App() {
+export default function App() {
   const [notes, setNotes] = useState(initial_data);
-  const [draft, setDraft] = useState(""); 
-  const [body, setBody] = useState(initial_body);
+  const [draft, setDraft] = useState("");
   const [selectedId, setSelectedId] = useState(0);
-  const [showAdd, setShowAdd] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
-  const selectedNote = notes.find((note) => note.id === selectedId);
-  const initial_body = selectedNote.body
+  const [status, setStatus] = useState("list");
+
+  useEffect(() => {
+    setDraft(notes.find((note) => note.id === selectedId).content);
+  }, [notes, selectedId]);
+
+  const titles = notes.map((data) => {
+    let ary = data.content.split("\n");
+    let title = ary.shift();
+    return { id: data.id, title: title };
+  });
+
+  function handleUpdateNote() {
+    const nextUpdate = notes.map((note) => {
+      if (note.id === selectedId) {
+        return { id: note.id, content: draft };
+      } else {
+        return note;
+      }
+    });
+    setNotes(nextUpdate);
+  }
 
   return (
     <>
-      <h1>Note app</h1>
+      <h1>{draft}</h1>
       <ul>
-        {notes.map((note) => (
+        {titles.map((title) => (
           <li
-            key={note.id}
+            key={title.id}
             onClick={() => {
-              setSelectedId(note.id);
-				      setShowEdit(true);
-				      setShowAdd(false);
+              setSelectedId(title.id);
+              setStatus("edit");
             }}
           >
-            {note.title}
+            {title.title}
           </li>
         ))}
-					{showAdd ? 
-				   (
-				   <>
-            <textarea
-				     placeholder={"enter"}
-				     onChange={(e) => {
-              setDraft(e.target.value)}}
-				    />
-				    <br/>
-				    <button 
-				     onClick={() => {
-               const lines = draft.split("\n")
-								const title = lines.shift();
-								const body = lines.join();
-				        setNotes([
-								  ...notes,
-								  {id: nextId++, title: title, body: body }
-								])
-								setDraft("");
-								setShowAdd(!showAdd)}}
-									 >
-									 新規作成
-									 </button>
-				    </>
-					 )
-				:
-				   (
-            <li
-				     onClick={() => {
-										 setShowAdd(true);
-										 setShowEdit(false);
-						 }}
-									 >+</li>
-					 )
-					}
+        <li onClick={() => setStatus("add")}>+</li>
       </ul>
-      {showEdit &&
-       (
-       <>
-        <textarea 
-				  value={selectedNote.body}
-				  onChange={(e) => {
-				    setDraft(e.target.value);
-					}}
-        />
-							 <br/>
-        <button onClick={() => 
 
-				  setShowEdit(!showEdit)}>更新</button>
-        <button onClick={() => {
-          setNotes(notes.filter(note => note.id !== selectedId));
-          setShowEdit(!showEdit)}}>削除</button>
-				<p>{draft}</p>
-      </>
-      )
-     }
-  </>
+      {status === "edit" && (
+        <>
+          <textarea
+            key={selectedId}
+            value={draft}
+            onChange={(e) => {
+              setDraft(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              setStatus("list");
+              handleUpdateNote();
+            }}
+          >
+            更新
+          </button>
+          <button
+            onClick={() => {
+              setStatus("list");
+              setNotes(notes.filter((note) => note.id !== selectedId));
+            }}
+          >
+            削除
+          </button>
+        </>
+      )}
+
+      {status === "add" && (
+        <>
+          <textarea
+            placeholder={"enter"}
+            onChange={(e) => {
+              setDraft(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              setStatus("list");
+              setNotes([...notes, { id: nextId++, content: draft }]);
+              setDraft("");
+            }}
+          >
+            新規登録
+          </button>
+        </>
+      )}
+    </>
   );
 }
-
-export default App;
