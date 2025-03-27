@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useLocalStorage } from "./use_local_storage.jsx";
 import "./App.css";
 
 let nextId = 3;
@@ -9,10 +10,11 @@ const initial_data = [
 ];
 
 export default function App() {
-  const [notes, setNotes] = useState(initial_data);
   const [draft, setDraft] = useState("");
   const [selectedId, setSelectedId] = useState(0);
   const [status, setStatus] = useState("list");
+
+  const [notes, setNotes] = useLocalStorage(initial_data);
 
   useEffect(() => {
     setDraft(notes.find((note) => note.id === selectedId).content);
