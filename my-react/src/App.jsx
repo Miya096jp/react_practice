@@ -1,5 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocalStorage } from "./use_local_storage.jsx";
+import { List } from "./list.jsx";
+import { Form } from "./form.jsx";
 import "./App.css";
 
 let nextId = 3;
@@ -14,7 +16,6 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [status, setStatus] = useState("list");
   const [notes, setNotes] = useLocalStorage(initial_data);
-  const inputRef = useRef(null);
 
   useEffect(() => {
     const item = notes.find((note) => note.id === selectedId);
@@ -51,92 +52,24 @@ export default function App() {
     setNotes(nextUpdate);
   }
 
-  useEffect(() => {
-    if (status === "add" || status === "edit") {
-      inputRef.current.focus();
-    }
-  }, [selectedId, status]);
+  function handleSelectNote(title) {
+    setSelectedId(title.id);
+    setStatus("edit");
+  }
 
   return (
     <div class="container">
-      <div class="list">
-        <ul>
-          {titles.map((title) => (
-            <li
-              class="yubi"
-              key={title.id}
-              onClick={() => {
-                setSelectedId(title.id);
-                setStatus("edit");
-              }}
-            >
-              {title.title}
-            </li>
-          ))}
-          <li
-            onClick={() => {
-              setStatus("add");
-            }}
-          >
-            +
-          </li>
-        </ul>
-      </div>
-
-      {status === "edit" && (
-        <div class="edit">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setStatus("list");
-              handleUpdateNote();
-            }}
-          >
-            <textarea
-              key={selectedId}
-              value={draft}
-              onChange={(e) => {
-                setDraft(e.target.value);
-              }}
-              ref={inputRef}
-            />
-            <div class="update-delete">
-              <button type="submit">更新</button>
-              <button
-                type="button"
-                onClick={() => {
-                  setStatus("list");
-                  handleDeleteNote();
-                }}
-              >
-                削除
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
-
-      {status === "add" && (
-        <div class="add">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setStatus("list");
-              handleAddNote();
-              setDraft("");
-            }}
-          >
-            <textarea
-              placeholder={"enter"}
-              onChange={(e) => {
-                setDraft(e.target.value);
-              }}
-              ref={inputRef}
-            />
-            <button type="submit">新規登録</button>
-          </form>
-        </div>
-      )}
+      <List titles={titles} onSelect={handleSelectNote} setStatus={setStatus} />
+      <Form
+        status={status}
+        setStatus={setStatus}
+        selectedId={selectedId}
+        draft={draft}
+        setDraft={setDraft}
+        onAdd={handleAddNote}
+        onUpdate={handleUpdateNote}
+        onDelete={handleDeleteNote}
+      />
     </div>
   );
 }

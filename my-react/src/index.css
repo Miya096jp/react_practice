@@ -2,23 +2,11 @@
   display: flex;
 }
 
-.add,
-.edit {
+form {
   display: flex;
   flex-direction: column;
   margin-left: 50px;
 }
-
-/* form { */
-/*  display: flex; */
-/*  flex-direction: column; */
-/*  margin-left: 50px; */
-/* } */
-
-
-/* .buttons { */
-/*   display: flex; */
-/* } */
 
 .update-delete {
   display: flex;
@@ -49,5 +37,3 @@ button {
   margin: 10px;
   cursor: pointer;
 }
-
-
