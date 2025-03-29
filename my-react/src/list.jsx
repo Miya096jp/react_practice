@@ -1,4 +1,10 @@
+import { useContext } from "react";
+import { LoginContext } from "./LoginContext.jsx"
+
+
 export function List({ titles, onSelect, setStatus }) {
+  const login = useContext(LoginContext);
+
   return (
     <div class="list">
       <ul>
@@ -7,13 +13,15 @@ export function List({ titles, onSelect, setStatus }) {
             {title.title}
           </li>
         ))}
+        {login && (
         <li
           onClick={() => {
             setStatus("add");
           }}
         >
           +
-        </li>
+        </li>)
+        }
       </ul>
     </div>
   );

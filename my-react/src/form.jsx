@@ -1,4 +1,6 @@
 import { useRef, useEffect } from "react";
+import { useContext } from "react";
+import { LoginContext } from "./LoginContext.jsx";
 
 export function Form({
   status,
@@ -17,6 +19,8 @@ export function Form({
       inputRef.current.focus();
     }
   }, [selectedId, status]);
+
+  const login = useContext(LoginContext);
 
   return (
     <>
@@ -37,6 +41,7 @@ export function Form({
               }}
               ref={inputRef}
             />
+            {login && (
             <div class="update-delete">
               <button type="submit">更新</button>
               <button
@@ -49,12 +54,13 @@ export function Form({
                 削除
               </button>
             </div>
+            )}
           </form>
         </div>
       )}
 
       {status === "add" && (
-        <div class="add">
+         <div class="add">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -63,6 +69,8 @@ export function Form({
               setDraft("");
             }}
           >
+            {login && (
+            <>
             <textarea
               placeholder={"enter"}
               onChange={(e) => {
@@ -71,6 +79,8 @@ export function Form({
               ref={inputRef}
             />
             <button type="submit">新規登録</button>
+            </>
+            )}
           </form>
         </div>
       )}

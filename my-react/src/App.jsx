@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocalStorage } from "./use_local_storage.jsx";
 import { List } from "./list.jsx";
 import { Form } from "./form.jsx";
+import UserLogin from "./UserLogin.jsx";
 import "./App.css";
 
 let nextId = 3;
@@ -16,6 +17,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [status, setStatus] = useState("list");
   const [notes, setNotes] = useLocalStorage(initial_data);
+  const [login, setLogin] = useState(false);
 
   useEffect(() => {
     const item = notes.find((note) => note.id === selectedId);
@@ -59,17 +61,28 @@ export default function App() {
 
   return (
     <div class="container">
-      <List titles={titles} onSelect={handleSelectNote} setStatus={setStatus} />
-      <Form
-        status={status}
-        setStatus={setStatus}
-        selectedId={selectedId}
-        draft={draft}
-        setDraft={setDraft}
-        onAdd={handleAddNote}
-        onUpdate={handleUpdateNote}
-        onDelete={handleDeleteNote}
-      />
+      <div class="header">
+        <button onClick={() => setLogin(!login)}>
+          {login ? "ログアウト" : "ログイン"}
+        </button>
+      </div>
+      <UserLogin login={login}>
+        <List
+          titles={titles}
+          onSelect={handleSelectNote}
+          setStatus={setStatus}
+        />
+        <Form
+          status={status}
+          setStatus={setStatus}
+          selectedId={selectedId}
+          draft={draft}
+          setDraft={setDraft}
+          onAdd={handleAddNote}
+          onUpdate={handleUpdateNote}
+          onDelete={handleDeleteNote}
+        />
+      </UserLogin>
     </div>
   );
 }
