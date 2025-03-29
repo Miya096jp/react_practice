@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocalStorage } from "./use_local_storage.jsx";
 import { List } from "./list.jsx";
 import { Form } from "./form.jsx";
-import UserLogin from "./UserLogin.jsx";
+import { UserLogin } from "./UserLogin.jsx";
 import "./App.css";
 
 let nextId = 3;

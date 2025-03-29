@@ -1,6 +1,5 @@
 import { useRef, useEffect } from "react";
-import { useContext } from "react";
-import { LoginContext } from "./LoginContext.jsx";
+import { useLogin } from "./LoginContext.jsx"
 
 export function Form({
   status,
@@ -20,7 +19,7 @@ export function Form({
     }
   }, [selectedId, status]);
 
-  const login = useContext(LoginContext);
+  const login = useLogin();
 
   return (
     <>

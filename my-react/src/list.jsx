@@ -1,9 +1,7 @@
-import { useContext } from "react";
-import { LoginContext } from "./LoginContext.jsx"
-
+import { useLogin } from "./LoginContext.jsx"
 
 export function List({ titles, onSelect, setStatus }) {
-  const login = useContext(LoginContext);
+  const login = useLogin();
 
   return (
     <div class="list">
