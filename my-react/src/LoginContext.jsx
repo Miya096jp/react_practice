@@ -1,3 +1,5 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext } from "react";
 export const LoginContext = createContext(false);
-export const useLogin = () => { return useContext(LoginContext) };
+export const useLogin = () => {
+  return useContext(LoginContext);
+};

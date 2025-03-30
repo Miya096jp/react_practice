@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { useLogin } from "./LoginContext.jsx"
+import { useLogin } from "./LoginContext.jsx";
 
 export function Form({
   status,
@@ -41,25 +41,25 @@ export function Form({
               ref={inputRef}
             />
             {login && (
-            <div class="update-delete">
-              <button type="submit">更新</button>
-              <button
-                type="button"
-                onClick={() => {
-                  setStatus("list");
-                  onDelete();
-                }}
-              >
-                削除
-              </button>
-            </div>
+              <div class="update-delete">
+                <button type="submit">更新</button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStatus("list");
+                    onDelete();
+                  }}
+                >
+                  削除
+                </button>
+              </div>
             )}
           </form>
         </div>
       )}
 
       {status === "add" && (
-         <div class="add">
+        <div class="add">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -69,16 +69,16 @@ export function Form({
             }}
           >
             {login && (
-            <>
-            <textarea
-              placeholder={"enter"}
-              onChange={(e) => {
-                setDraft(e.target.value);
-              }}
-              ref={inputRef}
-            />
-            <button type="submit">新規登録</button>
-            </>
+              <>
+                <textarea
+                  placeholder={"enter"}
+                  onChange={(e) => {
+                    setDraft(e.target.value);
+                  }}
+                  ref={inputRef}
+                />
+                <button type="submit">新規登録</button>
+              </>
             )}
           </form>
         </div>

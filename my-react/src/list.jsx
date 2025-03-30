@@ -1,4 +1,4 @@
-import { useLogin } from "./LoginContext.jsx"
+import { useLogin } from "./LoginContext.jsx";
 
 export function List({ titles, onSelect, setStatus }) {
   const login = useLogin();
@@ -12,14 +12,14 @@ export function List({ titles, onSelect, setStatus }) {
           </li>
         ))}
         {login && (
-        <li
-          onClick={() => {
-            setStatus("add");
-          }}
-        >
-          +
-        </li>)
-        }
+          <li
+            onClick={() => {
+              setStatus("add");
+            }}
+          >
+            +
+          </li>
+        )}
       </ul>
     </div>
   );
