@@ -4,10 +4,10 @@
 }
 
 .header {
-  border: solid;
-  width: 400px;
   display: flex;
   justify-content: right;
+  width: 390px;
+  margin-bottom: 10px;
 }
 
 .body {
@@ -16,22 +16,23 @@
 }
 
 .list {
-  border: solid;
-  display: flex;
+  width: 150px;
   justify-content: left;
-  /* width: 120px; */
 }
 
 form {
+  width: 220px;
   display: flex;
   flex-direction: column;
-  width: 280px;
-  border: solid;
+  justify-content: center;
+  padding-left: 30px;
 }
 
 .update-delete {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 200px;
 }
 
 ul {
@@ -40,21 +41,17 @@ ul {
 
 li {
   text-align: left;
-  /* padding: 10px; */
-  /* margin: 10px; */
   cursor: pointer;
 }
 
 textarea {
-  width: 180px;
-  height: 200px;
-  padding: 10px;
-  margin: 10px;
+  width: 200px;
+  height: 220px;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 button {
   width: 90px;
-  margin: 10px;
   cursor: pointer;
 }
