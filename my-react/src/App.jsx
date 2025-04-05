@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocalStorage } from "./use_local_storage.jsx";
 import { List } from "./list.jsx";
-import { Form } from "./form.jsx";
+import { Add } from "./Add.jsx";
+import { Edit } from "./Edit.jsx";
 import "./App.css";
 
 let nextId = 3;
@@ -16,6 +17,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [status, setStatus] = useState("list");
   const [notes, setNotes] = useLocalStorage(initial_data);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const item = notes.find((note) => note.id === selectedId);
@@ -57,19 +59,37 @@ export default function App() {
     setStatus("edit");
   }
 
+  useEffect(() => {
+    if (status === "add" || status === "edit") {
+      inputRef.current.focus();
+    }
+  }, [selectedId, status]);
+
   return (
     <div class="container">
       <List ids_titles={ids_titles} onSelect={handleSelectNote} setStatus={setStatus} />
-      <Form
+
+   {status === "edit" ? (
+      <Edit
         status={status}
         setStatus={setStatus}
         selectedId={selectedId}
         draft={draft}
         setDraft={setDraft}
-        onAdd={handleAddNote}
         onUpdate={handleUpdateNote}
         onDelete={handleDeleteNote}
+        ref={inputRef}
       />
+    ) : status === "add" ? (
+      <Add
+        status={status}
+        setStatus={setStatus}
+        selectedId={selectedId}
+        setDraft={setDraft}
+        onAdd={handleAddNote}
+        ref={inputRef}
+      />
+    ): null}
     </div>
   );
 }
