@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocalStorage } from "./use_local_storage.jsx";
+import { v4 as uuid } from "uuid";
 import { List } from "./list.jsx";
 import { Add } from "./Add.jsx";
 import { Edit } from "./Edit.jsx";
 import "./App.css";
 
-let nextId = 3;
 const initial_data = [
   { id: 0, content: "松尾芭蕉\n古池や蛙飛び込む水の音" },
   { id: 1, content: "小林一茶\n痩せガエル負けるな一茶ここにあり" },
@@ -35,7 +35,7 @@ export default function App() {
   }
 
   function handleAddNote() {
-    setNotes([...notes, { id: nextId++, content: draft }]);
+    setNotes([...notes, { id: uuid(), content: draft }]);
   }
 
   function handleUpdateNote() {
