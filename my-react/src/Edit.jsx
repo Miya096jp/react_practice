@@ -32,7 +32,7 @@ export function Edit({
               type="button"
               onClick={() => {
                 setStatus("list");
-                onDelete();
+                onDelete(selectedId);
               }}
             >
               削除

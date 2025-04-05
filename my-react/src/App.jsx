@@ -19,11 +19,6 @@ export default function App() {
   const [notes, setNotes] = useLocalStorage(initial_data);
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    const item = notes.find((note) => note.id === selectedId);
-    item ? setDraft(item.content) : setDraft(null);
-  }, [notes, selectedId]);
-
   const ids_titles = getIdsTitles();
 
   function getIdsTitles() {
@@ -49,14 +44,16 @@ export default function App() {
     setNotes(nextUpdate);
   }
 
-  function handleDeleteNote() {
-    const nextUpdate = notes.filter((note) => note.id !== selectedId);
+  function handleDeleteNote(id) {
+    const nextUpdate = notes.filter((note) => note.id !== id);
     setNotes(nextUpdate);
   }
 
-  function handleSelectNote(id_title) {
-    setSelectedId(id_title.id);
+  function handleSelectNote(id) {
+    setSelectedId(id);
     setStatus("edit");
+   const item = notes.find((note) => note.id === id);
+    item ? setDraft(item.content) : setDraft(null);
   }
 
   useEffect(() => {
