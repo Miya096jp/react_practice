@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocalStorage } from "./use_local_storage.jsx";
 import { v4 as uuid } from "uuid";
-import { List } from "./list.jsx";
+import { List } from "./List.jsx";
 import { Add } from "./Add.jsx";
 import { Edit } from "./Edit.jsx";
 import "./App.css";
