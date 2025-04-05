@@ -22,12 +22,12 @@ export default function App() {
     item ? setDraft(item.content) : setDraft(null);
   }, [notes, selectedId]);
 
-  const titles = getTitles();
+  const ids_titles = getIdsTitles();
 
-  function getTitles() {
+  function getIdsTitles() {
     return notes.map((data) => {
-      let ary = data.content.split("\n");
-      let title = ary.shift();
+      const ary = data.content.split("\n");
+      const title = ary.shift();
       return { id: data.id, title: title };
     });
   }
@@ -52,14 +52,14 @@ export default function App() {
     setNotes(nextUpdate);
   }
 
-  function handleSelectNote(title) {
-    setSelectedId(title.id);
+  function handleSelectNote(id_title) {
+    setSelectedId(id_title.id);
     setStatus("edit");
   }
 
   return (
     <div class="container">
-      <List titles={titles} onSelect={handleSelectNote} setStatus={setStatus} />
+      <List ids_titles={ids_titles} onSelect={handleSelectNote} setStatus={setStatus} />
       <Form
         status={status}
         setStatus={setStatus}

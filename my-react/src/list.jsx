@@ -1,10 +1,10 @@
-export function List({ titles, onSelect, setStatus }) {
+export function List({ ids_titles, onSelect, setStatus }) {
   return (
     <div class="list">
       <ul>
-        {titles.map((title) => (
-          <li class="yubi" key={title.id} onClick={() => onSelect(title)}>
-            {title.title}
+        {ids_titles.map((id_title) => (
+          <li class="yubi" key={id_title.id} onClick={() => onSelect(id_title)}>
+            {id_title.title}
           </li>
         ))}
         <li
