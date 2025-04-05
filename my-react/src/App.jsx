@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLocalStorage } from "./use_local_storage.jsx";
-import { v4 as uuid } from "uuid";
 import { List } from "./List.jsx";
 import { Add } from "./Add.jsx";
 import { Edit } from "./Edit.jsx";
@@ -29,7 +28,7 @@ export default function App() {
   }
 
   function handleAddNote() {
-    setNotes([...notes, { id: uuid(), content: draft }]);
+    setNotes([...notes, { id: window.crypto.randomUUID(), content: draft }]);
   }
 
   function handleUpdateNote() {
