@@ -5,9 +5,7 @@ export function Edit({
   setDraft,
   onUpdate,
   onDelete,
-  ref
 }) {
-
   return (
     <>
       <div class="edit">
@@ -19,12 +17,12 @@ export function Edit({
           }}
         >
           <textarea
+            autoFocus
             key={selectedId}
             value={draft}
             onChange={(e) => {
               setDraft(e.target.value);
             }}
-            ref={ref}
           />
           <div class="update-delete">
             <button type="submit">更新</button>

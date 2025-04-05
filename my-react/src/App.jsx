@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useLocalStorage } from "./use_local_storage.jsx";
 import { v4 as uuid } from "uuid";
 import { List } from "./list.jsx";
@@ -17,7 +17,6 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [status, setStatus] = useState("list");
   const [notes, setNotes] = useLocalStorage(initial_data);
-  const inputRef = useRef(null);
 
   const ids_titles = getIdsTitles();
 
@@ -52,41 +51,37 @@ export default function App() {
   function handleSelectNote(id) {
     setSelectedId(id);
     setStatus("edit");
-   const item = notes.find((note) => note.id === id);
+    const item = notes.find((note) => note.id === id);
     item ? setDraft(item.content) : setDraft(null);
   }
 
-  useEffect(() => {
-    if (status === "add" || status === "edit") {
-      inputRef.current.focus();
-    }
-  }, [selectedId, status]);
-
   return (
     <div class="container">
-      <List ids_titles={ids_titles} onSelect={handleSelectNote} setStatus={setStatus} />
+      <List
+        ids_titles={ids_titles}
+        onSelect={handleSelectNote}
+        setStatus={setStatus}
+      />
 
-   {status === "edit" ? (
-      <Edit
-        status={status}
-        setStatus={setStatus}
-        selectedId={selectedId}
-        draft={draft}
-        setDraft={setDraft}
-        onUpdate={handleUpdateNote}
-        onDelete={handleDeleteNote}
-        ref={inputRef}
-      />
-    ) : status === "add" ? (
-      <Add
-        status={status}
-        setStatus={setStatus}
-        selectedId={selectedId}
-        setDraft={setDraft}
-        onAdd={handleAddNote}
-        ref={inputRef}
-      />
-    ): null}
+      {status === "edit" ? (
+        <Edit
+          status={status}
+          setStatus={setStatus}
+          selectedId={selectedId}
+          draft={draft}
+          setDraft={setDraft}
+          onUpdate={handleUpdateNote}
+          onDelete={handleDeleteNote}
+        />
+      ) : status === "add" ? (
+        <Add
+          status={status}
+          setStatus={setStatus}
+          selectedId={selectedId}
+          setDraft={setDraft}
+          onAdd={handleAddNote}
+        />
+      ) : null}
     </div>
   );
 }

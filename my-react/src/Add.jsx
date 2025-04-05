@@ -1,5 +1,4 @@
-export function Add({ setStatus, setDraft, onAdd, ref}) {
-
+export function Add({ setStatus, setDraft, onAdd }) {
   return (
     <>
       <div class="add">
@@ -12,11 +11,11 @@ export function Add({ setStatus, setDraft, onAdd, ref}) {
           }}
         >
           <textarea
+            autoFocus
             placeholder={"enter"}
             onChange={(e) => {
               setDraft(e.target.value);
             }}
-            ref={ref}
           />
           <button type="submit">新規登録</button>
         </form>
