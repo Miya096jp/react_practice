@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.update-delete {
+  display: flex;
+  flex-direction: row;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  text-align: left;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+textarea {
+  width: 150px;
+  height: 200px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+button {
+  width: 75px;
+  margin: 10px;
+  cursor: pointer;
+}
