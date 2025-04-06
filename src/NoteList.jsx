@@ -1,4 +1,4 @@
-export function List({ ids_titles, onSelect, setStatus }) {
+export function NoteList({ ids_titles, onSelect, setStatus }) {
   return (
     <div class="list">
       <ul>

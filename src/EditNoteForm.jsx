@@ -1,4 +1,4 @@
-export function Edit({
+export function EditNoteForm({
   setStatus,
   selectedId,
   draft,

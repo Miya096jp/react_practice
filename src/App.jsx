@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useLocalStorage } from "./use_local_storage.jsx";
-import { List } from "./List.jsx";
-import { Add } from "./Add.jsx";
-import { Edit } from "./Edit.jsx";
+import { useLocalStorage } from "../hooks/useLocalStorage.jsx";
+import { NoteList } from "./NoteList.jsx";
+import { AddNoteForm } from "./AddNoteForm.jsx";
+import { EditNoteForm } from "./EditNoteForm.jsx";
 import "./App.css";
 
 const initial_data = [
@@ -56,14 +56,14 @@ export default function App() {
 
   return (
     <div class="container">
-      <List
+      <NoteList
         ids_titles={ids_titles}
         onSelect={handleSelectNote}
         setStatus={setStatus}
       />
 
       {status === "edit" ? (
-        <Edit
+        <EditNoteForm
           status={status}
           setStatus={setStatus}
           selectedId={selectedId}
@@ -73,7 +73,7 @@ export default function App() {
           onDelete={handleDeleteNote}
         />
       ) : status === "add" ? (
-        <Add
+        <AddNoteForm
           status={status}
           setStatus={setStatus}
           selectedId={selectedId}

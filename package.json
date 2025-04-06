@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "fix": "prettier --write . && eslint --fix .",
-    "lint": "prettier --check . && eslint ."
+    "lint": "prettier --check . && eslint .",
+    "dev": "vite"
   },
   "dependencies": {
     "react": "^19.0.0",
