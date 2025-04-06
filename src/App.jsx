@@ -5,7 +5,7 @@ import { AddNoteForm } from "./AddNoteForm.jsx";
 import { EditNoteForm } from "./EditNoteForm.jsx";
 import "./App.css";
 
-const initial_data = [
+const initialData = [
   { id: 0, content: "松尾芭蕉\n古池や蛙飛び込む水の音" },
   { id: 1, content: "小林一茶\n痩せガエル負けるな一茶ここにあり" },
   { id: 2, content: "作者不詳\n富士山麓に鸚鵡鳴く" },
@@ -15,14 +15,14 @@ export default function App() {
   const [draft, setDraft] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const [status, setStatus] = useState("list");
-  const [notes, setNotes] = useLocalStorage(initial_data);
+  const [notes, setNotes] = useLocalStorage(initialData);
 
-  const ids_titles = getIdsTitles();
+  const noteList = getNoteList();
 
-  function getIdsTitles() {
+  function getNoteList() {
     return notes.map((data) => {
-      const ary = data.content.split("\n");
-      const title = ary.shift();
+      const array = data.content.split("\n");
+      const title = array.shift();
       return { id: data.id, title: title };
     });
   }
@@ -57,7 +57,7 @@ export default function App() {
   return (
     <div class="container">
       <NoteList
-        ids_titles={ids_titles}
+        noteList={noteList}
         onSelect={handleSelectNote}
         setStatus={setStatus}
       />

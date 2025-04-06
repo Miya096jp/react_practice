@@ -1,15 +1,15 @@
-export function NoteList({ ids_titles, onSelect, setStatus }) {
+export function NoteList({ noteList, onSelect, setStatus }) {
   return (
     <div class="list">
       <ul>
-        {ids_titles.map((id_title) => (
+        {noteList.map((note) => (
           <li
-            key={id_title.id}
+            key={note.id}
             onClick={() => {
-              onSelect(id_title.id);
+              onSelect(note.id);
             }}
           >
-            {id_title.title}
+            {note.title}
           </li>
         ))}
         <li
