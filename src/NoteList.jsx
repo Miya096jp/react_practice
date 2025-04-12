@@ -1,14 +1,19 @@
 import { useLogin } from "./LoginContext.jsx";
 
-export function List({ titles, onSelect, setStatus }) {
+export function NoteList({ noteList, onSelect, setStatus }) {
   const login = useLogin();
 
   return (
     <div class="list">
       <ul>
-        {titles.map((title) => (
-          <li class="yubi" key={title.id} onClick={() => onSelect(title)}>
-            {title.title}
+        {noteList.map((note) => (
+          <li
+            key={note.id}
+            onClick={() => {
+              onSelect(note.id);
+            }}
+          >
+            {note.title}
           </li>
         ))}
         {login && (
