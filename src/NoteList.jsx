@@ -1,7 +1,7 @@
 import { useLogin } from "./LoginContext.js";
 
 export function NoteList({ noteList, onSelect, setStatus }) {
-  const login = useLogin();
+  const isLoggedIn = useLogin();
 
   return (
     <div class="list">
@@ -17,7 +17,7 @@ export function NoteList({ noteList, onSelect, setStatus }) {
           </li>
         ))}
       </ul>
-        {login && (
+        {isLoggedIn && (
           <button
             onClick={() => {
               setStatus("add");

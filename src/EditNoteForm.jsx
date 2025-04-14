@@ -8,7 +8,7 @@ export function EditNoteForm({
   onUpdate,
   onDelete,
 }) {
-  const login = useLogin();
+  const isLoggedIn = useLogin();
 
   return (
     <>
@@ -28,7 +28,7 @@ export function EditNoteForm({
               setDraft(e.target.value);
             }}
           />
-          {login && (
+          {isLoggedIn && (
             <div class="update-delete">
               <button type="submit">更新</button>
               <button
