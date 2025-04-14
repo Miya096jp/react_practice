@@ -1,4 +1,4 @@
-import { useLogin } from "./LoginContext.jsx";
+import { useLogin } from "./LoginContext.js";
 
 export function NoteList({ noteList, onSelect, setStatus }) {
   const login = useLogin();

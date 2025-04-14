@@ -1,4 +1,4 @@
-import { LoginContext } from "./LoginContext.jsx";
+import { LoginContext } from "./LoginContext.js";
 
 export function UserLogin({ login, children }) {
   return (
