@@ -16,16 +16,16 @@ export function NoteList({ noteList, onSelect, setStatus }) {
             {note.title}
           </li>
         ))}
+      </ul>
         {login && (
-          <li
+          <button
             onClick={() => {
               setStatus("add");
             }}
           >
             +
-          </li>
+          </button>
         )}
-      </ul>
     </div>
   );
 }
