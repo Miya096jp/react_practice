@@ -1,7 +1,7 @@
 import { useLogin } from "./LoginContext.jsx";
 
 export function AddNoteForm({ setStatus, setDraft, onAdd }) {
-  const login = useLogin();
+  const IsLoggedIn = useLogin();
 
   return (
     <>
@@ -14,7 +14,7 @@ export function AddNoteForm({ setStatus, setDraft, onAdd }) {
             setDraft("");
           }}
         >
-          {login && (
+          {IsLoggedIn && (
             <>
               <textarea
                 autoFocus
