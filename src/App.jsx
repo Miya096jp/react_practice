@@ -3,7 +3,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage.jsx";
 import { NoteList } from "./NoteList.jsx";
 import { AddNoteForm } from "./AddNoteForm.jsx";
 import { EditNoteForm } from "./EditNoteForm.jsx";
-import { UserLogin } from "./UserLogin.jsx";
+import { ContextProvider } from "./ContextProvider.jsx";
 import "./App.css";
 
 const initialData = [
@@ -18,6 +18,7 @@ export default function App() {
   const [status, setStatus] = useState("list");
   const [notes, setNotes] = useLocalStorage(initialData);
   const [login, setLogin] = useState(false);
+
 
   const noteList = getNoteList();
 
@@ -63,7 +64,7 @@ export default function App() {
           {login ? "ログアウト" : "ログイン"}
         </button>
       </div>
-      <UserLogin login={login}>
+      <ContextProvider login={login}>
         <NoteList
           noteList={noteList}
           onSelect={handleSelectNote}
@@ -89,7 +90,7 @@ export default function App() {
             onAdd={handleAddNote}
           />
         ) : null}
-      </UserLogin>
+      </ContextProvider>
     </div>
   );
 }
