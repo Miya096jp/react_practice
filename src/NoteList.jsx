@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { LoginContext } from "./LoginContext.js";
 
 export function NoteList({ noteList, onSelect, setStatus }) {
-  const [isLoggedIn, setLogin] = useContext(LoginContext);
+  const [isLoggedIn, _] = useContext(LoginContext);
 
   return (
     <div class="list">
@@ -18,15 +18,15 @@ export function NoteList({ noteList, onSelect, setStatus }) {
           </li>
         ))}
       </ul>
-        {isLoggedIn && (
-          <button
-            onClick={() => {
-              setStatus("add");
-            }}
-          >
-            +
-          </button>
-        )}
+      {isLoggedIn && (
+        <button
+          onClick={() => {
+            setStatus("add");
+          }}
+        >
+          +
+        </button>
+      )}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { LoginContext } from "./LoginContext.js";
 
 export function AddNoteForm({ setStatus, setDraft, onAdd }) {
-  const [IsLoggedIn, setLogin] = useContext(LoginContext);
+  const [IsLoggedIn, _] = useContext(LoginContext);
 
   return (
     <>

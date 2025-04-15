@@ -9,7 +9,7 @@ export function EditNoteForm({
   onUpdate,
   onDelete,
 }) {
-  const [isLoggedIn, setLogin] = useContext(LoginContext);
+  const [isLoggedIn, _] = useContext(LoginContext);
 
   return (
     <>

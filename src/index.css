@@ -10,14 +10,9 @@
   margin-bottom: 30px;
 }
 
-/* .body { */
-/*   display: flex; */
-/*   justify-content: left; */
-/* } */
-
 .main {
   display: flex;
-	flex-direction: row;
+  flex-direction: row;
 }
 
 .list {

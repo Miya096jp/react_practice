@@ -5,7 +5,9 @@ export function ContextProvider({ children }) {
   const [login, setLogin] = useState(false);
   return (
     <div class="body">
-      <LoginContext.Provider value={[login, setLogin]}>{children}</LoginContext.Provider>
+      <LoginContext.Provider value={[login, setLogin]}>
+        {children}
+      </LoginContext.Provider>
     </div>
   );
 }
