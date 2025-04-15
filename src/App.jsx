@@ -3,7 +3,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage.jsx";
 import { NoteList } from "./NoteList.jsx";
 import { AddNoteForm } from "./AddNoteForm.jsx";
 import { EditNoteForm } from "./EditNoteForm.jsx";
-import { LoginContext } from "./LoginContext.js"
+import { LoginContext } from "./LoginContext.js";
 import "./App.css";
 
 const initialData = [
@@ -63,30 +63,32 @@ export default function App() {
           {login ? "ログアウト" : "ログイン"}
         </button>
       </div>
-      <NoteList
-        noteList={noteList}
-        onSelect={handleSelectNote}
-        setStatus={setStatus}
-      />
-      {status === "edit" ? (
-        <EditNoteForm
-          status={status}
+      <div class="main">
+        <NoteList
+          noteList={noteList}
+          onSelect={handleSelectNote}
           setStatus={setStatus}
-          selectedId={selectedId}
-          draft={draft}
-          setDraft={setDraft}
-          onUpdate={handleUpdateNote}
-          onDelete={handleDeleteNote}
         />
-      ) : status === "add" ? (
-        <AddNoteForm
-          status={status}
-          setStatus={setStatus}
-          selectedId={selectedId}
-          setDraft={setDraft}
-          onAdd={handleAddNote}
-        />
-      ) : null}
+        {status === "edit" ? (
+          <EditNoteForm
+            status={status}
+            setStatus={setStatus}
+            selectedId={selectedId}
+            draft={draft}
+            setDraft={setDraft}
+            onUpdate={handleUpdateNote}
+            onDelete={handleDeleteNote}
+          />
+        ) : status === "add" ? (
+          <AddNoteForm
+            status={status}
+            setStatus={setStatus}
+            selectedId={selectedId}
+            setDraft={setDraft}
+            onAdd={handleAddNote}
+          />
+        ) : null}
+      </div>
     </div>
   );
 }
