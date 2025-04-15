@@ -1,8 +1,8 @@
 import { useLogin } from "./LoginContext.js";
-import { LoginContext } from "./LoginContext.js";
 
 export function AddNoteForm({ setStatus, setDraft, onAdd }) {
-  const IsLoggedIn = useLogin();
+  // const IsLoggedIn = useLogin();
+  const [IsLoggedIn, setLogin] = useLogin();
 
   return (
     <>

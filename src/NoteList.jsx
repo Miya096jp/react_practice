@@ -1,8 +1,8 @@
 import { useLogin } from "./LoginContext.js";
-import { LoginContext } from "./LoginContext.js";
 
 export function NoteList({ noteList, onSelect, setStatus }) {
-  const isLoggedIn = useLogin();
+  const [isLoggedIn, setLogin] = useLogin();
+  // console.log("useLogin output:", useLogin());
 
   return (
     <div class="list">
