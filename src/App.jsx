@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.jsx";
 import { NoteList } from "./NoteList.jsx";
 import { AddNoteForm } from "./AddNoteForm.jsx";
 import { EditNoteForm } from "./EditNoteForm.jsx";
-import { useLogin } from "./LoginContext.js";
+import { LoginContext } from "./LoginContext.js"
 import "./App.css";
 
 const initialData = [
@@ -17,7 +17,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [status, setStatus] = useState("list");
   const [notes, setNotes] = useLocalStorage(initialData);
-  const [login, setLogin] = useLogin();
+  const [login, setLogin] = useContext(LoginContext);
 
   const noteList = getNoteList();
 

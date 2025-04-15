@@ -1,5 +1,5 @@
-import { useLogin } from "./LoginContext.js";
-// import { LoginContext } from "./LoginContext.jsx";
+import { useContext } from "react";
+import { LoginContext } from "./LoginContext.js";
 
 export function EditNoteForm({
   setStatus,
@@ -9,8 +9,7 @@ export function EditNoteForm({
   onUpdate,
   onDelete,
 }) {
-  // const isLoggedIn = useLogin();
-  const [isLoggedIn, setLogin] = useLogin();
+  const [isLoggedIn, setLogin] = useContext(LoginContext);
 
   return (
     <>
