@@ -1,7 +1,7 @@
 import { useAuth } from "./useAuth.jsx";
 
 export function AddNoteForm({ setStatus, setDraft, onAdd }) {
-  const { IsLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <>
@@ -14,7 +14,7 @@ export function AddNoteForm({ setStatus, setDraft, onAdd }) {
             setDraft("");
           }}
         >
-          {IsLoggedIn && (
+          {isLoggedIn && (
             <>
               <textarea
                 autoFocus
