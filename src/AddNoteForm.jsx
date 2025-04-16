@@ -1,9 +1,7 @@
 import { useAuth } from "./useAuth.jsx";
 
-
 export function AddNoteForm({ setStatus, setDraft, onAdd }) {
   const [IsLoggedIn, _] = useAuth();
-  
 
   return (
     <>
