@@ -4,7 +4,7 @@ import { Header } from "./Header.jsx";
 import { NoteList } from "./NoteList.jsx";
 import { AddNoteForm } from "./AddNoteForm.jsx";
 import { EditNoteForm } from "./EditNoteForm.jsx";
-import { useAuth } from "./useAuth.jsx";
+import { Provider } from "./useAuth.jsx";
 import "./App.css";
 
 const initialData = [
@@ -18,7 +18,6 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [status, setStatus] = useState("list");
   const [notes, setNotes] = useLocalStorage(initialData);
-  const [login, setLogin] = useAuth();
 
   const noteList = getNoteList();
 
@@ -59,33 +58,35 @@ export default function App() {
 
   return (
     <div class="container">
-      <Header />
-      <div class="main">
-        <NoteList
-          noteList={noteList}
-          onSelect={handleSelectNote}
-          setStatus={setStatus}
-        />
-        {status === "edit" ? (
-          <EditNoteForm
-            status={status}
+      <Provider>
+        <Header />
+        <div class="main">
+          <NoteList
+            noteList={noteList}
+            onSelect={handleSelectNote}
             setStatus={setStatus}
-            selectedId={selectedId}
-            draft={draft}
-            setDraft={setDraft}
-            onUpdate={handleUpdateNote}
-            onDelete={handleDeleteNote}
           />
-        ) : status === "add" ? (
-          <AddNoteForm
-            status={status}
-            setStatus={setStatus}
-            selectedId={selectedId}
-            setDraft={setDraft}
-            onAdd={handleAddNote}
-          />
-        ) : null}
-      </div>
+          {status === "edit" ? (
+            <EditNoteForm
+              status={status}
+              setStatus={setStatus}
+              selectedId={selectedId}
+              draft={draft}
+              setDraft={setDraft}
+              onUpdate={handleUpdateNote}
+              onDelete={handleDeleteNote}
+            />
+          ) : status === "add" ? (
+            <AddNoteForm
+              status={status}
+              setStatus={setStatus}
+              selectedId={selectedId}
+              setDraft={setDraft}
+              onAdd={handleAddNote}
+            />
+          ) : null}
+        </div>
+      </Provider>
     </div>
   );
 }

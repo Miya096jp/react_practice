@@ -5,7 +5,7 @@ export const useAuth = () => {
   return useContext(LoginContext);
 }
 
-export function ContextProvider({ children }) {
+export function Provider({ children }) {
   const [login, setLogin] = useState(false);
   return (
     <div class="body">
