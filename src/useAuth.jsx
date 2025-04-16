@@ -1,5 +1,9 @@
-import { useState } from "react";
-import { LoginContext } from "./LoginContext.js";
+import { useState, createContext, useContext } from "react";
+const LoginContext = createContext(null);
+
+export const useAuth = () => {
+  return useContext(LoginContext);
+}
 
 export function ContextProvider({ children }) {
   const [login, setLogin] = useState(false);

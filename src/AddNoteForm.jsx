@@ -1,8 +1,9 @@
-import { useContext } from "react";
-import { LoginContext } from "./LoginContext.js";
+import { useAuth } from "./useAuth.jsx";
+
 
 export function AddNoteForm({ setStatus, setDraft, onAdd }) {
-  const [IsLoggedIn, _] = useContext(LoginContext);
+  const [IsLoggedIn, _] = useAuth();
+  
 
   return (
     <>
