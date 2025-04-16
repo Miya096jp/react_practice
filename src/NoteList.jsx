@@ -1,7 +1,7 @@
 import { useAuth } from "./useAuth.jsx";
 
 export function NoteList({ noteList, onSelect, setStatus }) {
-  const [isLoggedIn, _] = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <div class="list">

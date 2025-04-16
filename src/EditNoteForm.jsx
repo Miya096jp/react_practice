@@ -8,7 +8,7 @@ export function EditNoteForm({
   onUpdate,
   onDelete,
 }) {
-  const [isLoggedIn, _] = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <>

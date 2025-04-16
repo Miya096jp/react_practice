@@ -8,7 +8,7 @@ export const useAuth = () => {
 export function Provider({ children }) {
   const [login, setLogin] = useState(false);
   return (
-    <LoginContext.Provider value={[login, setLogin]}>
+    <LoginContext.Provider value={{ isLoggedIn: login, setIsLoggedIn: setLogin }}>
       {children}
     </LoginContext.Provider>
   );
