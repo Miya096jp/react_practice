@@ -1,4 +1,8 @@
+import { useAuth } from "./useAuth.jsx";
+
 export function NoteList({ noteList, onSelect, setStatus }) {
+  const { isLoggedIn } = useAuth();
+
   return (
     <div class="list">
       <ul>
@@ -12,14 +16,16 @@ export function NoteList({ noteList, onSelect, setStatus }) {
             {note.title}
           </li>
         ))}
-        <li
+      </ul>
+      {isLoggedIn && (
+        <button
           onClick={() => {
             setStatus("add");
           }}
         >
           +
-        </li>
-      </ul>
+        </button>
+      )}
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.jsx";
+import { Header } from "./Header.jsx";
 import { NoteList } from "./NoteList.jsx";
 import { AddNoteForm } from "./AddNoteForm.jsx";
 import { EditNoteForm } from "./EditNoteForm.jsx";
+import { Provider } from "./useAuth.jsx";
 import "./App.css";
 
 const initialData = [
@@ -56,31 +58,35 @@ export default function App() {
 
   return (
     <div class="container">
-      <NoteList
-        noteList={noteList}
-        onSelect={handleSelectNote}
-        setStatus={setStatus}
-      />
-
-      {status === "edit" ? (
-        <EditNoteForm
-          status={status}
-          setStatus={setStatus}
-          selectedId={selectedId}
-          draft={draft}
-          setDraft={setDraft}
-          onUpdate={handleUpdateNote}
-          onDelete={handleDeleteNote}
-        />
-      ) : status === "add" ? (
-        <AddNoteForm
-          status={status}
-          setStatus={setStatus}
-          selectedId={selectedId}
-          setDraft={setDraft}
-          onAdd={handleAddNote}
-        />
-      ) : null}
+      <Provider>
+        <Header />
+        <div class="main">
+          <NoteList
+            noteList={noteList}
+            onSelect={handleSelectNote}
+            setStatus={setStatus}
+          />
+          {status === "edit" ? (
+            <EditNoteForm
+              status={status}
+              setStatus={setStatus}
+              selectedId={selectedId}
+              draft={draft}
+              setDraft={setDraft}
+              onUpdate={handleUpdateNote}
+              onDelete={handleDeleteNote}
+            />
+          ) : status === "add" ? (
+            <AddNoteForm
+              status={status}
+              setStatus={setStatus}
+              selectedId={selectedId}
+              setDraft={setDraft}
+              onAdd={handleAddNote}
+            />
+          ) : null}
+        </div>
+      </Provider>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { useAuth } from "./useAuth.jsx";
+
 export function EditNoteForm({
   setStatus,
   selectedId,
@@ -6,6 +8,8 @@ export function EditNoteForm({
   onUpdate,
   onDelete,
 }) {
+  const { isLoggedIn } = useAuth();
+
   return (
     <>
       <div class="edit">
@@ -24,18 +28,20 @@ export function EditNoteForm({
               setDraft(e.target.value);
             }}
           />
-          <div class="update-delete">
-            <button type="submit">更新</button>
-            <button
-              type="button"
-              onClick={() => {
-                setStatus("list");
-                onDelete(selectedId);
-              }}
-            >
-              削除
-            </button>
-          </div>
+          {isLoggedIn && (
+            <div class="update-delete">
+              <button type="submit">更新</button>
+              <button
+                type="button"
+                onClick={() => {
+                  setStatus("list");
+                  onDelete(selectedId);
+                }}
+              >
+                削除
+              </button>
+            </div>
+          )}
         </form>
       </div>
     </>
