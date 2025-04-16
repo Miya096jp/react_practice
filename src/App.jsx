@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.jsx";
+import { Header } from "./Header.jsx";
 import { NoteList } from "./NoteList.jsx";
 import { AddNoteForm } from "./AddNoteForm.jsx";
 import { EditNoteForm } from "./EditNoteForm.jsx";
@@ -58,11 +59,7 @@ export default function App() {
 
   return (
     <div class="container">
-      <div class="header">
-        <button onClick={() => setLogin(!login)}>
-          {login ? "ログアウト" : "ログイン"}
-        </button>
-      </div>
+      <Header />
       <div class="main">
         <NoteList
           noteList={noteList}
